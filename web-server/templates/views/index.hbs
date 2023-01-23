@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="img/weather-app.png">
-    <script src="js/app.js"></script>
     <title>{{title}}</title>
 </head>
 <body>
     <div class="main-content">{{>header}}
         <p>This is weather page</p>
-    <img class="portrait" src="img/nature-field.jpg">
+    <form>
+        <input placeholder="location">
+        <button>Search</button>
+    </form>
+    <p id="messageOne"></p>
+    <p id="messageTwo"></p>
     </div>
     {{>footer}}
+    <script src="js/app.js"></script>
 </body>
 </html> 

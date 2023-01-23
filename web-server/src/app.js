@@ -1,6 +1,8 @@
 const express = require('express');
 const path  = require('path');
 const hbs  = require('hbs');
+const geoCode = require('./utils/geoCode.js');
+const foreCast = require('./utils/foreCast');
 
 const app = express();
 
@@ -31,6 +33,41 @@ app.get('/about',(req, res) => {
     });
 });
 
+app.get('/weather',(req, res) => {
+    if(!req.query.address){
+        return res.send({
+            error: "You need to provide address param"
+        });
+     }
+     geoCode(req.query.address, (error, { latitude, longitude, location } = {})  => {
+        if(error){
+            return res.send({ error: error });
+        }
+        foreCast(latitude,longitude ,(error, foreCastData) => {
+            if(error){
+                return res.send({ error: error });
+            }
+            return res.send({
+                forecast: foreCastData,
+                location,
+                address: req.query.address
+            });
+        })
+    })
+});
+
+app.get('/products',(req, res) => {
+     if(!req.query.search){
+        return res.send({
+            error: "You need to provide search param"
+        });
+     }
+     console.log(req.query.search);
+    res.send({
+        product: []
+    });
+});
+
 app.get('/help',(req, res) => {
     res.render('help', {
         title: 'Help',
@@ -55,14 +92,6 @@ app.get('*',(req, res) => {
         name: 'patel'
     });
 });
-
-// app.get('/help',(req, res) => {
-//     res.send();
-// })
-
-// app.get('/about',(req, res) => {
-//     res.send('It is a About page');
-// })
 
 app.get('/weather',(req, res) => {
     res.send('It is a weather page');
