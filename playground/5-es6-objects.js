@@ -18,10 +18,10 @@ const product = {
 
 }
 
-const {label:productLabel, price, sellPrice = 50} = product
-console.log(productLabel,price,sellPrice);
+// const {label:productLabel, price, sellPrice = 50} = product
+// console.log(productLabel,price,sellPrice);
 
-const transcation = (type, {label,price}) => {
+const transcation = (type, {label,price = 10} = {}) => {
     console.log(type,label,price);
 }
 
