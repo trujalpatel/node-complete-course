@@ -6,6 +6,8 @@ const foreCast = require('./utils/foreCast');
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 // Define apps for express config
 const publicDirectoryPath = path.join(__dirname,'../public');
 const viewPath = path.join(__dirname,'../templates/views');
@@ -97,6 +99,6 @@ app.get('/weather',(req, res) => {
     res.send('It is a weather page');
 })
 
-app.listen('3000', () => {
-    console.log('server is up on 3000 port');
+app.listen(port, () => {
+    console.log('server is up on '+port+' ');
 })
