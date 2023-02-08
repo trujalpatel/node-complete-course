@@ -5,7 +5,7 @@ const taskRouter = require('./routers/task');
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const multer = require('multer');
 // app.use((req, res, next) => {
 //     console(req.method, req.path);
