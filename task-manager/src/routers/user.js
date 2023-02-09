@@ -138,7 +138,7 @@ router.patch('/users/me', auth, async (req, res) => {
     const isEligibleForUpdate = updates.every((update) => allowedFieldToUpdate.includes(update));
 
     if(!isEligibleForUpdate){
-        return res.status(404).send('Please provide valid field..!');
+        return res.status(400).send('Please provide valid field..!');
     }
     try {
        updates.forEach((key) => req.user[key] = req.body[key]);
